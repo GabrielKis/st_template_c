@@ -1,0 +1,6 @@
+using sysbus
+mach create
+machine LoadPlatformDescription @renode/stm32f4.repl
+logLevel 0
+sysbus LoadELF @build/st_c_template.elf
+machine StartGdbServer 3333
