@@ -1,5 +1,7 @@
 RM := rm -rf
 
+TOOLCHAIN = arm-none-eabi
+
 # All of the sources participating in the build are defined here
 OBJS := 
 S_DEPS := 
@@ -17,10 +19,10 @@ BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
-EXECUTABLE = build/st_c_template.elf
-MAP_FILE = build/st_c_template.map
+EXECUTABLE = build/$(BUILD_ARTIFACT_NAME).elf
+MAP_FILE = build/$(BUILD_ARTIFACT_NAME).map
 SIZE_OUTPUT = default.size.stdout
-OBJDUMP_LIST = build/st_c_template.list
+OBJDUMP_LIST = build/$(BUILD_ARTIFACT_NAME).list
 
 CFLAGS = -mcpu=cortex-m4 \
 		-T"STM32F401CCUX_FLASH.ld" \
@@ -39,17 +41,17 @@ main-build: $(EXECUTABLE) secondary-outputs
 
 # Tool invocations
 $(EXECUTABLE) $(MAP_FILE): $(OBJS) STM32F401CCUX_FLASH.ld
-	arm-none-eabi-gcc -o $(EXECUTABLE) $(OBJS) $(CFLAGS)
+	$(TOOLCHAIN)-gcc -o $(EXECUTABLE) $(OBJS) $(CFLAGS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 $(SIZE_OUTPUT): $(EXECUTABLE)
-	arm-none-eabi-size  $(EXECUTABLE)
+	$(TOOLCHAIN)-size  $(EXECUTABLE)
 	@echo 'Finished building: $@'
 	@echo ' '
 
 $(OBJDUMP_LIST): $(EXECUTABLE)
-	arm-none-eabi-objdump -h -S $(EXECUTABLE) > "$(OBJDUMP_LIST)"
+	$(TOOLCHAIN)-objdump -h -S $(EXECUTABLE) > "$(OBJDUMP_LIST)"
 	@echo 'Finished building: $@'
 	@echo ' '
 

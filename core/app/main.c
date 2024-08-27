@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include <stdio.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -56,6 +57,12 @@ void SystemClock_Config(void);
 
 /* USER CODE END 0 */
 
+void do_nothing(void)
+{
+  int i =0;
+  i++;
+}
+
 /**
   * @brief  The application entry point.
   * @retval int
@@ -90,9 +97,11 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  printf("Hello World\n");
   while (1)
   {
     /* USER CODE END WHILE */
+  do_nothing();
 
     /* USER CODE BEGIN 3 */
   }
