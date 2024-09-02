@@ -1,0 +1,29 @@
+{
+    "configurations": [
+        {
+            "name": "ARM Embedded GCC",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/core/app",
+                "${workspaceFolder}/core/control",
+                "${workspaceFolder}/core/driver",
+                "${workspaceFolder}/core/mcu/CMSIS/Include",
+                "${workspaceFolder}/core/mcu/CMSIS/Device/ST/STM32F4xx/Include",
+                "${workspaceFolder}/core/mcu/STM32F4xx_HAL_Driver/Inc",
+                "${workspaceFolder}/core/mcu/STM32F4xx_HAL_Driver/Inc/Legacy",
+                "${workspaceFolder}/core/mcu/config",
+                "${workspaceFolder}/core/mcu/startup"
+            ],
+            "defines": [
+                "STM32F401xC",
+                "USE_HAL_DRIVER"
+            ],
+            "compilerPath": "/usr/bin/arm-none-eabi-gcc",
+            "cStandard": "c11",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "gcc-arm",
+            "configurationProvider": "ms-vscode.makefile-tools"
+        }
+    ],
+    "version": 4
+}
